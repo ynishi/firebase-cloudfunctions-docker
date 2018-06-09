@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # init project
-docker-compose run firebase-cf firebase login
+docker-compose run -p 9005:9005 firebase-cf firebase login
 docker-compose run firebase-cf firebase init functions
 
 # update
