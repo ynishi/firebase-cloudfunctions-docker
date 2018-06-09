@@ -26,3 +26,6 @@ make deploy
 ```
 make update
 ```
+
+## LICENSE
+* MIT, see LICENSE.
