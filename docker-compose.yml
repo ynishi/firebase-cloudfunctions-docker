@@ -1,0 +1,7 @@
+version: '3'
+services:
+  firebase-cf:
+    image: node-firebase
+    volumes:
+      - ./dot.config:/home/node/.config # firebase config
+      - .:/project
