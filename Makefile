@@ -1,17 +1,46 @@
 .PHONY: build init update bash deploy
 
 build:
-	docker build -t node-firebase .
+	docker build -t node6-firebase docker
 
 init:
 	sh firebase-init.sh
 
 update:
-	docker run --rm -i -t -v $$(pwd):/project -v $$(pwd)/dot.config:/home/node/.config -w /project/functions node-firebase npm install firebase-functions@latest firebase-admin@latest --save
-	docker run --rm -i -t -u root -v $$(pwd):/project -v $$(pwd)/dot.config:/home/node/.config -w /project/functions node-firebase npm install -g firebase-tools 
+	docker-compose run -w /project/functions firebase-cf \
+		npm install firebase-functions@latest firebase-admin@latest --save
+	docker-compose run -w /project/functions firebase-cf \
+		npm install -g firebase-tools
+
+addprj:
+	docker-compose run firebase-cf firebase use --add
 
 deploy:
 	docker-compose run firebase-cf firebase deploy --only functions
 
+serve:
+	docker-compose up
+
+test:
+	docker-compose run -w /project/functions firebase-cf \
+		npm test
+
+fshell:
+	docker-compose run -w /project/functions firebase-cf \
+		sh -c "firebase functions:config:get > .runtimeconfig.json && \
+		       firebase functions:shell"
+
+flog:
+	docker-compose run -w /project/functions firebase-cf \
+		firebase functions:log
+
 bash:
-	docker run --rm -i -t -v $$(pwd):/project -v $$(pwd)/dot.config:/home/node/.config node-firebase bash
+	docker-compose run firebase-cf bash
+
+clean:
+	docker-compose rm
+
+beautify:
+	docker-compose run -w /project/functions firebase-cf \
+		sh -c "npm install -g js-beautify && \
+		       js-beautify -r index.js"

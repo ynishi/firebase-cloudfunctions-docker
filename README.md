@@ -10,7 +10,7 @@ based on official doc https://firebase.google.com/docs/functions/get-started
 ### build image
 ```
 make build
-# docker build -t node-firebase
+# docker build -t node6-firebase
 ```
 ### init project
 ```
