@@ -1,7 +1,8 @@
 version: '3'
 services:
   firebase-cf:
-    image: node6-firebase
+    # to use local image by make build, change to "node6-firebase"
+    image: ynishi/firebase-cloudfunctions-docker
     command: firebase serve --only functions --host 0.0.0.0
     ports:
       - "5000"

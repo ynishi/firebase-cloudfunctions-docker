@@ -1,4 +1,4 @@
-.PHONY: build init update bash deploy
+.PHONY: build init update bash addprj deploy serve fshell flog clean beautify installpkg
 
 build:
 	docker build -t node6-firebase docker
