@@ -42,5 +42,8 @@ clean:
 
 beautify:
 	docker-compose run -w /project/functions firebase-cf \
-		sh -c "npm install -g js-beautify && \
-		       js-beautify -r index.js"
+		 js-beautify -r $(FILES) 
+
+installpkg:
+	 docker-compose run -w /project/functions firebase-cf \
+		 npm install $(ARGS) $(PKGS)
