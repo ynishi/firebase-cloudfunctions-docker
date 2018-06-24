@@ -1,11 +1,12 @@
-FROM node
+FROM node:6.14.0
 
-RUN npm install -g firebase-tools
-RUN npm install -g typescript
+RUN set -eux; \
+    npm install -g \
+        firebase-tools \
+        typescript; \
+    \
+    firebase --version; \
+    tsc --version
 
 RUN mkdir /project
-RUN chown node:node /project
-
-USER node
-RUN mkdir ~node/.config 
 WORKDIR /project/

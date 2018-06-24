@@ -1,7 +1,10 @@
 version: '3'
 services:
   firebase-cf:
-    image: node-firebase
+    image: node6-firebase
+    command: firebase serve --only functions --host 0.0.0.0
+    ports:
+      - "5000"
     volumes:
-      - ./dot.config:/home/node/.config # firebase config
+      - ./dot.config:/root/.config # firebase config
       - .:/project
