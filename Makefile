@@ -12,6 +12,9 @@ update:
 	docker-compose run -w /project/functions firebase-cf \
 		npm install -g firebase-tools
 
+fb:
+	docker-compose run firebase-cf firebase $(ARGS)
+
 addprj:
 	docker-compose run firebase-cf firebase use --add
 
