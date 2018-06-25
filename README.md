@@ -26,6 +26,12 @@ make deploy
 ```
 make update
 ```
+### install npm packages
+```
+make installpkg PKGS=${packages} ARGS=${args}
+# clone from project include package.json, just do below
+make installpkg
+```
 
 ## LICENSE
 * MIT, see LICENSE.
