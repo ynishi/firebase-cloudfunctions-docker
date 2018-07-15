@@ -1,7 +1,7 @@
 .PHONY: build init update bash addprj deploy serve fshell flog clean beautify installpkg
 
 build:
-	docker build -t node6-firebase docker
+	docker build -t ynishi/firebase-cloudfunctions-docker docker --no-cache
 
 init:
 	sh firebase-init.sh
@@ -45,7 +45,7 @@ clean:
 
 beautify:
 	docker-compose run -w /project/functions firebase-cf \
-		 js-beautify -r $(FILES) 
+		 js-beautify -r $(FILES)
 
 installpkg:
 	 docker-compose run -w /project/functions firebase-cf \

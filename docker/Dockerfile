@@ -1,13 +1,18 @@
 FROM node:6.14.0
 
-RUN set -eux; \
-    npm install -g \
-        firebase-tools \
-        js-beautify \
-        typescript; \
-    \
-    firebase --version; \
-    tsc --version
+ENV FIREBASE_VERSION 3.19.3
+ENV TAG_VERSION 6.14.0-${FIREBASE_VERSION}
 
-RUN mkdir /project
-WORKDIR /project/
+RUN set -eux; \
+    yarn global add \
+        firebase-tools@${FIREBASE_VERSION} \
+        js-beautify \
+        typescript \
+    && firebase --version \
+    && tsc --version
+
+RUN set -eux; \
+  mkdir /project
+WORKDIR /project
+
+CMD ["firebase"]

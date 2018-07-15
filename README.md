@@ -6,11 +6,9 @@ based on official doc https://firebase.google.com/docs/functions/get-started
 * `docker-compose up` don't create long process. so `docker-compose run` makes temp images.
 * recommended `docker-compose rm` to clean temp images or use docker run command directly.
 * `dot.config` dir contains firebase login settings, is mounted when docker container run. don't push public.
-* user in docker is node.
 ### build image
 ```
 make build
-# docker build -t node6-firebase
 ```
 ### init project
 ```
